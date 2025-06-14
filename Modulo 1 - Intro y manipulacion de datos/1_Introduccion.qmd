@@ -1,0 +1,313 @@
+---
+title: "Introducción a `R` y `RStudio`"
+author: "Roger M. López"
+format: 
+  revealjs:
+    theme: serif
+    logo: "Imagenes/logoCENACE.svg"
+    #self-contained: true
+    css: custom.css
+  #  highlight-style: github
+    toc: true
+    toc-title: "Contenido"
+    toc-location: left
+    toc-depth: 1
+    slide-number: true
+    link-external-newwindow: true
+    preview-links: true
+    auto-stretch: false
+    #number-sections: true
+editor: visual
+echo: false
+---
+
+# Introducción
+
+En esta primera clase, vamos a introducirnos en el lenguaje de programación `R`, su instalación, el uso del entorno `RStudio`, y los primeros conceptos de objetos y operaciones.
+
+## ¿Qué es R?
+
+`R` es un [lenguaje de programación](https://en.wikipedia.org/wiki/Programming_language) utilizado principalmente para análisis de datos y estadísticas. Es de [código abierto](https://en.wikipedia.org/wiki/Open_source) y cuenta con una comunidad muy activa.
+
+> *“R nació como una reimplementación de software libre del lenguaje S, adicionado con soporte para ámbito estático. Se trata de uno de los lenguajes de programación más utilizados en investigación científica, siendo además muy popular en los campos de aprendizaje automático (machine learning), minería de datos, econometría, investigación biomédica, bioinformática y en el campo económico-financiero. A esto contribuye la posibilidad de cargar diferentes bibliotecas o paquetes con funcionalidades de cálculo y graficación. \[...\] Fue desarrollado inicialmente por Robert Gentleman y Ross Ihaka del Departamento de Estadística de la Universidad de Auckland en 1993.”*
+
+. . .
+
+Aún cuando existen alternativas quizás más sencillas de aprender para realizar análisis de datos como pueden ser `Stata`, `SPSS`, `EViews` o incluso `MS Excel`, `R` permite la *automatización* y *reproducción* de las rutinas más comunes, además de que provee un ecosistema completo para la publicación de los resultados en función a las distintas audiencias que uno pueda tener: otros analistas, presentaciones ejecutivas, conferencias...
+
+## Comparativa rápida
+
+Aunque `R` no es uno de los [lenguajes de programación más *utilizados*](https://survey.stackoverflow.co/2024/technology), sí es uno de los [lenguajes más *populares*](https://pypl.github.io/PYPL.html), ampliamente utilizado en el ámbito académico y profesional para análisis estadístico y visualización de datos.
+
+. . .
+
+Para el análisis de datos, sin embargo, los tres lenguajes más comunes son `R`, `Python` y `Julia`. Cada uno tiene sus ventajas y desventajas, dependiendo del contexto y las necesidades del usuario.
+
+| Lenguaje | Pros | Contras |
+|:----------------:|:-----------------------:|:---------------------------:|
+| `R` | Paquetes estadísticos, comunidad | Menor rendimiento en grandes datos |
+| `Python` | Versatilidad, bibliotecas robustas | Menos enfoque estadístico |
+| `Julia` | Alto rendimiento, sintaxis clara | Comunidad pequeña |
+
+<!-- . . . -->
+
+<!-- ::: {.callout-note title="¿Por qué usar `R`?"} -->
+
+<!-- -   Gratuito y de código abierto -->
+
+<!-- -   Gran comunidad y soporte -->
+
+<!-- -   Potente para estadísticas y visualización -->
+
+<!-- ::: -->
+
+# Instalación
+
+En esta sección, vamos a ver cómo instalar, *primero*, `R` y, *en segundo lugar*, `RStudio`, dos herramientas esenciales para trabajar con el lenguaje de programación `R`. Como recordatorio, `R` es el lenguaje de programación en sí, mientras que `RStudio` es un entorno de desarrollo integrado (IDE) que facilita el trabajo con `R`.
+
+## Paso a paso: descarga
+
+En primer lugar, se debe descargar `R`. Para esto ingresamos a la página oficial, ya sea buscando en google o directamente en [r-project.org](https://www.r-project.org)
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("Imagenes/BuscarR.png")
+```
+
+## Paso a paso: OS
+
+Aunque automáticamente suele detectar el [sistema operativo](https://cloud.r-project.org/), es recomendable verificar que se descargue la versión correcta.
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("Imagenes/CRAN.png")
+```
+
+## Paso a paso: instalación y uso
+
+Una vez instalado, se puede abrir `R` desde el menú de aplicaciones. Al abrirlo, se mostrará una *consola* donde se pueden escribir comandos directamente.
+
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
+
+knitr::include_graphics("Imagenes/R.png")
+```
+
+# Instalación de RStudio
+
+Para facilitar el uso de `R`, se recomienda instalar `RStudio`, un entorno de desarrollo integrado (IDE) que proporciona una interfaz más amigable y herramientas útiles para trabajar con `R`.
+
+## Paso a paso: instalación
+
+*Una vez instalado* `R`, vamos a proceder a instalar [rstudio.com](https://www.rstudio.com).
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("Imagenes/BuscarRStudio.png")
+```
+
+## Paso a paso: descargar
+
+Existen diferentes versiones de `RStudio`, pero para este curso vamos a utilizar la versión gratuita, que se puede descargar desde la [página oficial](https://posit.co/download/rstudio-desktop/).
+
+```{r, echo=FALSE, out.width='75%'}
+knitr::include_graphics("Imagenes/DescargarRStudio.png")
+```
+
+# Entorno de trabajo en `RStudio`
+
+Es importante familiarizarse con el entorno de trabajo de `RStudio` y explorar sus diferentes paneles y funcionalidades.
+
+## Un vistazo al entorno
+
+```{r, echo=FALSE, out.width='85%'}
+knitr::include_graphics("Imagenes/Prompt.png")
+```
+
+## Un vistazo al entorno: consola
+
+:::::::: columns
+::: {.column width="75%"}
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("Imagenes/Prompt-console.png")
+```
+:::
+
+:::::: {.column width="25%"}
+::: {.fragment fragment-index="1"}
+-   La *consola* es donde se ejecutan los comandos de `R`.
+:::
+
+::: {.fragment fragment-index="2"}
+-   Similar a la terminal de `R`.
+:::
+
+::: {.fragment fragment-index="3"}
+-   No se suele trabajar directamente en la consola, sino que se utiliza un *script* o un *R Markdown*.
+:::
+::::::
+::::::::
+
+## Un vistazo al entorno: global environment
+
+:::::::: columns
+::: {.column width="75%"}
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("Imagenes/Prompt-ge.png")
+```
+:::
+
+:::::: {.column width="25%"}
+::: {.fragment fragment-index="1"}
+-   En el *Global Enviroment* se muestran los objetos creados en la sesión de `R`.
+:::
+
+::: {.fragment fragment-index="2"}
+-   Es posible interactuar con los objetos, por ejemplo, tablas de datos.
+:::
+
+::: {.fragment fragment-index="3"}
+-   Contiene otras opciones *manuales*. Sin embargo, es siempre mejor utilizar el código directamente.
+:::
+::::::
+::::::::
+
+## Un vistazo al entorno: otros
+
+:::::::: columns
+::: {.column width="75%"}
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("Imagenes/Prompt-viewer.png")
+```
+:::
+
+:::::: {.column width="25%"}
+::: {.fragment fragment-index="1"}
+-   Se pueden ver gráficos, archivos, y otros elementos.
+:::
+
+::: {.fragment fragment-index="2"}
+-   Es bastante útil para visualizar resultados de análisis.
+:::
+
+::: {.fragment fragment-index="3"}
+-   También se pueden intereactuar directamente con los archivos de la carpeta de trabajo.
+:::
+::::::
+::::::::
+
+## Objetos en `R`
+
+En `R`, los datos se almacenan en [*objetos*](https://en.wikipedia.org/wiki/Object-oriented_programming). Estos objetos pueden ser de diferentes tipos, como vectores, matrices, listas, data frames, entre otros. En este caso definimos `x` como nuestro primer objeto.
+
+```{r, echo=FALSE, out.width='70%'}
+knitr::include_graphics("Imagenes/Objetos.png")
+```
+
+## *Scripts* en `R`: crear
+
+Se pueden crear nuevos *scripts* desde el menú de `RStudio` o utilizando el atajo de teclado `Ctrl + Shift + N` en Windows o `Cmd + Shift + N` en Mac.
+
+```{r, echo=FALSE, out.width='70%'}
+knitr::include_graphics("Imagenes/OpenScript.png")
+```
+
+## *Scripts* en `R`: navegar
+
+Los *scripts* son archivos de texto que contienen código `R`.
+
+```{r, echo=FALSE, out.width='70%'}
+knitr::include_graphics("Imagenes/RScript.png")
+```
+
+## *Scripts* en `R`: escribir código
+
+Los *scripts* permiten escribir y guardar código `R` para su posterior ejecución. Se pueden utilizar comentarios (con `#`) para documentar el código.
+
+```{r, echo=FALSE, out.width='70%'}
+knitr::include_graphics("Imagenes/Script.png")
+```
+
+## *Scripts* en `R`: ejecutar
+
+Para ejecutar un *script*, se puede utilizar el botón de "Run" en la parte superior del editor de código o utilizar el atajo de teclado `Ctrl + Enter` en Windows o `Cmd + Enter` en Mac. Esto ejecutará la línea actual o las líneas seleccionadas.
+
+```{r, echo=FALSE, out.width='70%'}
+knitr::include_graphics("Imagenes/EjecutarScript.png")
+```
+
+## *Scripts* en `R`: guardar
+
+Es importante guardar los *scripts* para no perder el trabajo realizado. Se puede hacer clic en el icono de guardar o utilizar el atajo de teclado `Ctrl + S` en Windows o `Cmd + S` en Mac. También se puede elegir la ubicación y el nombre del archivo.
+
+```{r, echo=FALSE, out.width='70%'}
+knitr::include_graphics("Imagenes/GuardarScript.png")
+```
+
+<!-- # R Markdown -->
+
+<!-- ## Abrir R Markdown -->
+
+<!-- ```{r, echo=FALSE, out.width='80%'} -->
+
+<!-- knitr::include_graphics("Imagenes/RMarkdown.png") -->
+
+<!-- ``` -->
+
+<!-- ## Completar datos -->
+
+<!-- ```{r, echo=FALSE, out.width='80%'} -->
+
+<!-- knitr::include_graphics("Imagenes/RMarkdown2.png") -->
+
+<!-- ``` -->
+
+<!-- ## Estructura de R Markdown -->
+
+<!-- ```{r, echo=FALSE, out.width='80%'} -->
+
+<!-- knitr::include_graphics("Imagenes/RMarkdown3.png") -->
+
+<!-- ``` -->
+
+<!-- ## Ejecutar Chunk -->
+
+<!-- ```{r, echo=FALSE, out.width='80%'} -->
+
+<!-- knitr::include_graphics("Imagenes/RMarkdown4.png") -->
+
+<!-- ``` -->
+
+<!-- ## Exportar a HTML -->
+
+<!-- ```{r, echo=FALSE, out.width='80%'} -->
+
+<!-- knitr::include_graphics("Imagenes/ExportRMarkdown.png") -->
+
+<!-- ``` -->
+
+<!-- ## Visualizar resultado -->
+
+<!-- ```{r, echo=FALSE, out.width='80%'} -->
+
+<!-- knitr::include_graphics("Imagenes/SeeRMarkdown.png") -->
+
+<!-- ``` -->
+
+<!-- :::{.callout-warning title="Advertencia"} -->
+
+<!-- No colocar espacios o puntos en el nombre del archivo `.Rmd`. -->
+
+<!-- ::: -->
+
+# Conclusión
+
+-   `R` es una herramienta potente para análisis reproducibles. Es popular en la comunidad científica y de datos.
+
+. . .
+
+-   `RStudio` permite trabajar de manera más eficiente con `R`, facilitando la escritura, ejecución y organización del código.
+
+<br>
+
+. . .
+
+::: {.callout-note title="Próximos pasos"}
+En la siguiente clase abordaremos operaciones con vectores y funciones básicas.
+:::

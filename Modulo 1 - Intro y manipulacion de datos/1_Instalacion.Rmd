@@ -1,0 +1,282 @@
+---
+title: "Clase 1: Introducción a R"
+author: "Roger M. López"
+date: "2023-07-10"
+output: 
+  html_document:
+    keep_md: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+En esta primera clase, vamos a introducirnos en el lenguaje de programación `R` y aprenderemos sobre su importancia y cómo instalarlo. También exploraremos el entorno de desarrollo integrado `RStudio` y su interfaz.
+
+# El lenguaje
+
+`R` es un lenguaje de programación utilizado para análisis de datos y estadísticas, principalmente. Como se indica en su página dedicada en [Wikipedia](https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n)){.uri}:
+
+> *R nació como una reimplementación de software libre del lenguaje S, adicionado con soporte para ámbito estático. Se trata de uno de los lenguajes de programación más utilizados en investigación científica, siendo además muy popular en los campos de aprendizaje automático (machine learning), minería de datos, econometría, investigación biomédica, bioinformática y en el campo económico-financiero. A esto contribuye la posibilidad de cargar diferentes bibliotecas o paquetes con funcionalidades de cálculo y graficación. [...] Fue desarrollado inicialmente por Robert Gentleman y Ross Ihaka del Departamento de Estadística de la Universidad de Auckland en 1993.*
+
+`R` es un lenguaje de código abierto (véase [Open Source](https://en.wikipedia.org/wiki/Open_source)) y cuenta con una amplia comunidad de usuarios y desarrolladores.
+
+Aún cuando existen alternativas quizás más sencillas de aprender para realizar análisis de datos como pueden ser `Stata`, `SPSS`, `EViews` o incluso `MS Excel`, `R` permite la *automatización* y *reproducción* de las rutinas más comunes en el área del análisis de datos, además de que provee un ecosistema completo para la publicación de los resultados en función a las distintas audiencias que uno pueda tener: otros analistas, presentaciones ejecutivas, conferencias, etc.
+
+## Una nota sobre lenguajes de programación
+
+Una forma sencilla de entender qué hace un [lenguaje de programación](https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n) es con una analogía a los lenguajes en forma general.
+
+En principio, las computadoras (PCs, ordenadores) son buenos para hacer cálculos de forma sistemática y eficiente, algo que el cerebro humano no permite. Así, los lenguajes de programación permiten dar instrucciones de forma escrita para que los componentes físicos (hardware) de las computadoras ejecuten. Por así decirlo, los lenguajes de programación permiten comunicar a los humanos con las computadoras.
+
+Existen una infinidad de lenguajes de programación que se diseñan con algún (algunos) objetivo(s) en mente y tratar de resolver, de forma más eficiente o sencilla determinados problemas. Una lista de lenguajes se pueden encontrar [aquí](https://es.wikipedia.org/wiki/Anexo:Lenguajes_de_programaci%C3%B3n). Por tanto, la elección de un lenguaje es como la elección de una herramienta: debe escogerse en función al problema que se quiere resolver.
+
+Respecto al análisis de datos, `R` no es la única opción y tiene sus competidores como ser `Python` o `Julia`. Según [ChatGPT](https://chat.openai.com/), la siguiente tabla resume los pros y contras de cada uno respecto a su uso para el análisis de datos:
+
+| Lenguaje | Pros | Contras |
+|:-----------------:|--------------------------|---------------------------|
+| `R` | 1) Amplio conjunto de paquetes especializados en estadísticas y análisis de datos. 2) Comunidad activa y soporte de la comunidad. 3) Sintaxis específica para análisis estadístico. | 1) Rendimiento inferior para grandes conjuntos de datos. 2) Menor versatilidad en aplicaciones generales de programación. |
+| `Python` | 1) Amplia adopción y gran comunidad de usuarios. 2) Versatilidad para aplicaciones generales de programación. 3) Bibliotecas robustas para análisis de datos (NumPy, Pandas, Matplotlib, etc.). | 1) Menos enfocado en análisis estadístico puro en comparación con `R`. 2) Curva de aprendizaje ligeramente más pronunciada que `R`. |
+| `Julia` | 1) Alto rendimiento y velocidad de ejecución. 2) Sintaxis clara y expresiva. 3) Capacidad para integrar código de otros lenguajes. | 1) Menor cantidad de paquetes y bibliotecas en comparación con `R` y `Python.` 3) Comunidad en crecimiento, pero aún más pequeña que las de `R` y `Python.` |
+
+# Instalación de `R` y `RStudio`
+
+Para poder utilizar `R` y `RStudio` se debe instalar primero `R` y, una vez instalado, `RStudio.`
+
+## Instalación de `R`
+
+1.  Ir al sitio web de `R` en <https://www.r-project.org>.
+
+```{r, echo=FALSE, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/BuscarR.png"))
+```
+
+2.  Hacer clic en el enlace de descarga correspondiente al sistema operativo en uso (Windows, macOS o Linux).
+
+```{r, echo=FALSE, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/CRAN.png"))
+```
+
+3.  Seguir las instrucciones de instalación proporcionadas en el `.exe`
+
+Una vez instalado `R` se ve así:
+
+```{r,echo=FALSE, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/R.png"))
+```
+
+Nótese la versión que tengo instalada en el sistema: `4.3.0`. El equipo a cargo de `R` continúa realizando mejoras sobre el lenguaje y, aunque no cambia la estructura del mismo (sintaxis o gramática) sí realiza cambios para mejorar el rendimiento, la escalabilidad, etc.
+
+## Instalación de `RStudio`
+
+Una vez instalado `R`, se procede a instalar `RStudio`:
+
+1.  Ir al sitio web de RStudio en <https://www.rstudio.com>.
+
+```{r, echo=FALSE, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/BuscarRStudio.png"))
+```
+
+2.  Hacer click en el enlace "Download" y seleccionar la versión gratuita de RStudio Desktop.
+
+```{r, echo=FALSE, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/DescargarRStudio.png"))
+```
+
+3.  Descargar la versión adecuada para el sistema operativo y seguir las instrucciones de instalación.
+
+# Introducción a RStudio y su entorno de trabajo
+
+`RStudio` es un entorno de desarrollo integrado (IDE, por sus siglas en inglés) diseñado para trabajar con `R`. Proporciona una interfaz amigable y herramientas adicionales para facilitar el desarrollo de código en `R`.
+
+## Consola (Prompt)
+
+La consola de `R` es desde donde se escriben y ejecutan comandos de `R`. Es similar a una calculadora donde se pueden ingresar instrucciones y obtener resultados inmediatos. Nótese que es similar a la consolar de `R` pero con elementos adicionales para facilitar el desarrollo.
+
+```{r, echo=FALSE, out.width= '80%'}
+knitr::include_graphics(here::here(here::here("Imagenes/Prompt.png")))
+```
+
+### Objetos
+
+`R` permite la [Programación Orientada a Objeto](https://es.wikipedia.org/wiki/Programaci%C3%B3n_orientada_a_objetos) y, por tanto, puede pensarse que todo lo que se "crea" en el lenguaje es un objeto, el cual contiene información o atributos. Por ejemplo, en el ejemplo a continuación se crea el "objeto" `x` al cual se le asigna el valor $5$:
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/Objetos.png"))
+```
+
+Nótese que para asignar valores a objetos se usa el operador de asignación o "assignment" `<-` que apunta el valor $5$ hacia el objeto `x`.
+
+Una vez asignado el valor al objeto, cada vez que "se llama" al mismo, es decir, cada vez que se lo escribe en la consola, devuelve el valor asignado.
+
+A medida que se avance con el curso se crearán objetos con otras características que serán las piezas fundamentales para programas o análisis más largos y complejos.
+
+### Entorno de objetos
+
+El entorno de objetos muestra los objetos (variables, funciones, etc.) que están actualmente cargados en la memoria de `R`. Aquí se pueden ver y gestionar los objetos creados durante el análisis. Más adelante también se verá cómo acceder a los mismos y a la información que contienen.
+
+## Script de `R`
+
+De forma general, un script es un archivo de texto que contiene una pieza de código o instrucciones para ejecutar un programa. Un script de `R` es un archivo de texto donde se escribe y guardar código en `R`.
+
+El poder almacenar el código es bastante útil pues básicamente es lo que le da el carácter de *reutilizable*, además de que permite tener un registro de los pasos lógicos (código) por medio de los cuales se llega a un resultado.
+
+### Abrir Script
+
+Para crear un script se debe ingresar a los menús indicados en la siguiente imagen:
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/OpenScript.png"))
+```
+
+Una vez abierto se debería ver como se muestra a continuación:
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/RScript.png"))
+```
+
+Por ejemplo, supongamos que se quieren crear los objetos `x`, `y` e `z` como se muestra a continuación:
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/Script.png"))
+```
+
+Nótese que el script almacena dos tipos de información. En primer lugar los objetos con sus respectivos valores y, posteriormente y en verde se escribió una descripción o *comentario* sobre lo que se quiere lograr en cada línea de código.
+
+Así, uno puede *comentar* el código utilizando el operador `#`. Todo lo que viene luego de dicho operador no será catalogado como código de `R` y, por tanto, no será *ejecutado*.
+
+::: {style="color: black;  padding: 0.2em; background: #EEFCFF;border-radius: 8px;"}
+**¡Importante!** Es una buena idea comentar lo que se está haciendo con el código, al menos mientras se está aprendiendo el lenguaje.
+:::
+
+### Ejecutar Script
+
+Para ejecutar (o "correr") el script, se debe seleccionar el contenido y presionar el botón `Run` en la parte superior derecha del mismo. Se recomienda, sin embargo, acostumbrarse a correrlo vía comandos. Así, con `Cmd/Ctrl + Enter` se ejecuta la línea donde se tiene el cursor y, si se hace una selección más amplia ejecuta todo lo marcado:
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/EjecutarScript.png"))
+```
+
+Nótese que, al momento de ejecutar el código seleccionado, este se pasa a la consola para su ejecución. Posteriormente los resultados se guardan en el *navegador de objetos* en el cuadrante superior derecho de `R Studio`.
+
+### Guardar Script
+
+Una vez que se ha termiando de trabajar en el script de `R`, se debe guardar la información para continuar la siguiente sesión:
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/GuardarScript.png"))
+```
+
+Una vez guardado en el equipo, está listo para ser reutilizado, compartido, etc.
+
+## R Markdown
+
+`R Markdown` provee un marco completo para el análisis de datos. En concreto, permite combinar texto, código y gráficos para ejecutar dinámicamente el código en `R` y exportarlo a formatos más amigables, como ser `.pdf` o `.docx` (MS Word).
+
+Una exposición más detallada del mismo se puede encontrar [aquí](https://bookdown.org/gboccardo/manual-ED-UCH/introduccion-al-uso-de-rmarkdown-para-la-compilacion-de-resultados-de-rstudio-en-diferentes-formatos.html) o, en su referencia obligatoria, el libro [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/).
+
+### Abrir R Markdown
+
+Para abrir un archivo `R Markdown` se deben seguir los pasos de la imagen siguiente:
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/RMarkdown.png"))
+```
+
+### Formatos en R Markdown
+
+Al hacer click sobre el mismo, se pedirán algunos datos mínimos y, posteriormente, el formato al cual, por defaul, se quiere exportar el archivo. En este caso dejamos todo como está y hacemos click en el botón "OK".
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/RMarkdown2.png"))
+```
+
+### Mi primer R Markdown
+
+Una vez abierto el archivo, la sección inicial que va desde la línea 1 a la 6 es lo que se conoce como [YAML](https://es.wikipedia.org/wiki/YAML) y nos permitirá formatear el documento de forma general. Por el momento no vamos a modificar esta parte:
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/RMarkdown3.png"))
+```
+
+En segundo lugar, se observa con un fondo gris el siguiente código:
+
+```` ```{r setup, include=TRUE} knitr::opts_chunk$set(echo = TRUE)``` ````
+
+Esto se conoce como un `chunk` y permite ejecutar código en `R` de forma interactiva. Sin embargo este `chunk` particular es bastante importante, pues gobierna la conducta y la configuración de los demás `chunks`. Sobre esto volveremos más adelante.
+
+Básicamente, el formato de los `chunks` comienza con tres comillas hacia atrás (backticks) ```` ```{r} ```` y, entre paréntesis curveados o llaves, el lenguaje que se desea ejecutar. Adicional al lenguaje se puede indicar el nombre que se le quiere dar al `chunk`. Para cerrar el `chunk` se deben colocar otras tres comillas hacia atrás. Todo lo que está entre las comillas es interpretado como código.
+
+### Ejecutar R Markdown
+
+Por ejemplo, el segundo `chunk` contiene el código `summary(cars)`. Para ejecutarlo, se puede hacer click en el signo de "play" en verde, en la parte superior derecha del `chunk` o, usando los atajos del teclado `Cmd/Ctrl + Enter`:
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/RMarkdown4.png"))
+```
+
+Nótese que el código se ejecuta justo después del `chunk` y el resultado es visible para programador.[^1]
+
+[^1]: Más adelante entraremos en el detalle de los `chunks` y el código en `R`.
+
+Finalmente, en el archivo se encuentra *texto* en color azul. Este texto está formateado en [Markdown](https://es.wikipedia.org/wiki/Markdown) que es una sintaxis para formatear texto que es ligeramente a similar a [cómo se formatean los mensajes en WhatsApp](https://faq.whatsapp.com/539178204879377).
+
+Por ejemplo, para indicar que se quiere iniciar un título o una nueva sección se utiliza un signo de numeral, `#` seguido de un espacio y texto, por ejemplo:
+
+-   `# Título o sección principal`
+-   `## Subtítulo o segunda sección`
+-   `## Sub-subtítulo o tercera sección`
+-   ...
+
+O, por ejemplo, si se desea colocar texto en **negrita** se debe colocar `**negrita**` y para *texto en cursiva* colocar `*texto en cursiva*`.[^2]
+
+[^2]: En lugar de asteriscos, `*` se pueden sustituir por guiones bajos, `_`.
+
+[Aquí](https://www.markdownguide.org/cheat-sheet/) se puede encontrar mayor detalle sobre las convenciones para el formateo de texto.
+
+### Exportar R Markdown
+
+Finalmente, una vez se ha trabajado el archivo se puede exportar el mismo. Aquí existen varias opciones para hacerlo, como ser en formato `.html` (que se desplega en los navegadores), `.docx`, en formato de Microsoft Word o en `.pdf`.[^3]
+
+[^3]: Esto requiere tener instalado [MiKTeX](https://miktex.org/) en Windows o [MacTeX](https://www.tug.org/mactex/) en Mac para usar `LaTeX`. Otra opción en `R` es instalando [TinyTeX](https://yihui.org/tinytex/)
+
+En este caso, vamos a exportar a formato `.html`, que es el default. Para hacerlo hacemos click en el botón `Knit` en la parte superior del documento y hacemos click en "Knit to HTML". Otra forma de hacerlo utilizando los atajos del teclado es presionando `Cmd/Ctrl + Shift + K`.
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/ExportRMarkdown.png"))
+```
+
+Esto nos pedirá que se guarde el documento si es que hay cambios sin almacenar y comenzará el proceso de exportado.
+
+::: {style="color: black;  padding: 0.2em; background: #FFE6E6;border-radius: 8px;"}
+**¡Advertencia!** Cuando se guarde el archivo de `R Markdown` (extensión `.Rmd`) no colocar espacios o puntos en el nombre del archivo, puesto que generará error en el proceso de exportado.
+:::
+
+### Visualizar R Markdowns
+
+Finalmente, si se ha guardado correctamente y no hay errores en el documento aparecerá una ventana emergente con el resultado del análisis:
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/SeeRMarkdown.png"))
+```
+
+# Conclusión
+
+En este primer capítulo se ha revisado cómo instalar y conocer la herramienta con la cual se trabajará en adelante.
+
+En lo que sigue del programa no se copiarán las imágenes de los códigos sino simplemente el código a ejecutarse y el resultado del mismo.
+
+Por ejemplo, si se quiere hacer una suma, en vez de mostrar la imagen a continuación:
+
+```{r, out.width= '80%'}
+knitr::include_graphics(here::here("Imagenes/Prompt.png"))
+```
+
+Simplemente se mostrará:
+
+```{r echo=TRUE}
+2 + 2
+3*5
+```
+
+Por tanto, el estudiante podrá copiar el código y ejecutarlo donde le parezca conveniente.
