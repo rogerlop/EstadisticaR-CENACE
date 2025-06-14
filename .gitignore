@@ -60,3 +60,5 @@ imagenes/
 # Ignorar cualquier carpeta que termine en _files
 *_files/
 */_files/
+
+**/_extensions/
