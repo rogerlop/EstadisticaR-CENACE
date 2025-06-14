@@ -47,3 +47,16 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Ignorar archivos .qmd, .Rmd y .css
+*.qmd
+*.Rmd
+*.css
+
+# Ignorar carpetas llamadas imagenes (independiente de la ruta)
+imagenes/
+*/imagenes/
+
+# Ignorar cualquier carpeta que termine en _files
+*_files/
+*/_files/
